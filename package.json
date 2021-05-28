@@ -1,0 +1,17 @@
+{
+  "name": "websocket-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "consoleApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socket.io"
+  ],
+  "author": "Ta Minh Nhat",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.1.1"
+  }
+}
