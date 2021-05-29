@@ -93,10 +93,10 @@ const wall = function(name){
     }
 }
 
-
+console.log('Start listening')
 io.listen(3000);
 io.on('connection', function(socket){
-    //console.log('New client connected', socket);
+    console.log('New client connected', socket);
     listenSocket = socket;
     //      HANDLE EVENT FROM USER
     //      ONLY FOR TESTING
