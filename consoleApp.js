@@ -28,7 +28,15 @@ let generateLightCmd = function(name, type, side){
     lightObj.params.wall = type;
     lightObj.params.side = side;
     lightObj.key = generateCheck(5);
-    return lightObj;
+    return {
+        name: '',
+        clientId: "server",
+        version: "0.0.1",
+        params: {
+            wall: type,
+            side: side
+        }
+    }
 };
 
 let generateConfirmCmd = function(name, wall, row, col, state){
@@ -96,7 +104,7 @@ const wall = function(name){
 console.log('Start listening')
 io.listen(3000);
 io.on('connection', function(socket){
-    console.log('New client connected', socket);
+    console.log('New client connected', socket.conn.remoteAddress);
     listenSocket = socket;
     //      HANDLE EVENT FROM USER
     //      ONLY FOR TESTING
@@ -111,10 +119,20 @@ io.on('connection', function(socket){
     socket.on('user:command', function(d){
         const tempStr = d.split('.')
         const tempName = tempStr[0];
-        const tempType = tempStr[1] + '-' + tempStr[2] + '-' +tempStr[3];
+        const tempWall = tempStr[1] + '-' + tempStr[2] + '-' +tempStr[3];
         const tempSide = tempStr[4];
         if(tempStr[1] == 'M' && tempStr[2] >= 1 && tempStr[2] <=4 && tempStr[3] >= 1 && tempStr[3] <= 30){
-            let lightApi = generateLightCmd(tempName, tempType, tempSide);
+            let lightApi = {
+                name: tempName,
+                clientId: "server",
+                version: "0.0.1",
+                params: {
+                    wall: tempWall,
+                    side: tempSide
+                },
+                date: Date.now(),
+                key: generateCheck(6)
+            }
             io.emit(tempName, lightApi);
             console.log('Sent to client', d);
         }
@@ -126,7 +144,7 @@ io.on('connection', function(socket){
 
     socket.on('wallControllerStart', function(startApi){
         console.log('wallControllerStart', startApi);
-    })
+    });
 
     socket.on('scanTotePushToWall', function(scanApi){
         console.log('scanTotePushToWall', scanApi);
@@ -134,12 +152,25 @@ io.on('connection', function(socket){
         socket.emit('confirmWall', generateConfirmApi(scanApi.key));
 
         if(testEnabled){
-            let wallName = 'M-1-1';
-            while(wallName == 'M-1-1' || wallName == 'M-1-7' || wallName =='M-1-13' || wallName == 'M-1-19' || wallName == 'M-1-25'){
+            let wallName = returnWall();
+            while(wall(wallName).full == true){
                 wallName = returnWall();
             }
-            const lightApi = generateLightCmd('lightOn', wallName, 'front');
-            socket.emit('lightOn', lightApi)
+            // while(wallName == 'M-1-1' || wallName == 'M-1-7' || wallName =='M-1-13' || wallName == 'M-1-19' || wallName == 'M-1-25'){
+            //     wallName = returnWall();
+            // }
+            const lightApi = {
+                name: 'lightOn',
+                clientId: "server",
+                version: "1.0.0",
+                params: {
+                    wall: wallName,
+                    side: 'front'
+                },
+                date: Date.now(),
+                key: scanApi.key
+            }
+            io.emit('lightOn', lightApi)
         }
     });
 
@@ -148,15 +179,39 @@ io.on('connection', function(socket){
         console.log('pushToWall', buttonApi);
         if(enableSendConfirm)
         socket.emit('confirmWall', generateConfirmApi(buttonApi.key));
+        const lightOffApi = {
+            name: 'lightOff',
+            clientId: "server",
+            version: "0.0.1",
+            params: {
+                wall: wallName,
+                side: 'front'
+            },
+            date: buttonApi.date,
+            key: buttonApi.key
+        }
+        socket.emit('lightOff', lightOffApi);
         
         wall(wallName).count ++;
         console.log('wall', wall(wallName).name, wall(wallName).count, wall(wallName).max)
         
         if(testEnabled && wall(wallName).count >= wall(wallName).max){
-            const lightApi = generateLightCmd('lightOn', wallName, 'back');
+            const lightApi = {
+                name: 'lightOn',
+                clientId: "server",
+                version: "0.0.1",
+                params: {
+                    wall: wallName,
+                    side: 'back'
+                },
+                date: buttonApi.date,
+                key: buttonApi.key
+            }
             socket.emit('lightOn', lightApi);
             wall(wallName).count == 0;
-            wall(wallName).count == Math.floor(Math.random() * 3) + 2;
+            wall(wallName).max = Math.floor(Math.random() * 3);
+            wall(wallName).full = true;
+            //wall(wallName).count == Math.floor(Math.random() * 3) + 2;
         }
     });
 
@@ -242,20 +297,20 @@ io.on('connection', function(socket){
     });
     //  Handle confirm from wall
     socket.on('lightOnConfirm', function(d){
-        console.log(d);
-        console.log(`light already on at address: ${d.params.type}:${d.params.side}`);
+        console.log('lightOnConfirm', d);
+        //console.log(`light already on at address: ${d.params.type}:${d.params.side}`);
     });
     socket.on('lightOffConfirm', function(d){
-        console.log(d);
-        console.log(`light already off at address: ${d.params.type}:${d.params.row}:${d.params.col}:${d.params.side}`);
+        console.log('lightOffConfirm', d);
+        //console.log(`light already off at address: ${d.params.type}:${d.params.row}:${d.params.col}:${d.params.side}`);
     });
     socket.on('getPackageConfirm', function(d){
         console.log(d);
-        console.log(`take package at address: ${d.params.type}:${d.params.row}:${d.params.col}`);
+        //console.log(`take package at address: ${d.params.type}:${d.params.row}:${d.params.col}`);
     });
     socket.on('putPackageConfirm', function(d){
         console.log(d);
-        console.log(`add package at address: ${d.params.type}:${d.params.row}:${d.params.col}`);
+        //console.log(`add package at address: ${d.params.type}:${d.params.row}:${d.params.col}`);
     });
     //  Handle wallState
     socket.on('wallState', function(d){
