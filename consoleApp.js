@@ -146,10 +146,10 @@ io.on('connection', function (socket) {
         console.log('wallControllerStart', startApi);
     });
 
-    socket.on('scanTotePushToWall', function (scanApi) {
+    socket.on('mergeWall/scanTotePutToLight', function (scanApi) {
         console.log('scanTotePushToWall', scanApi);
-        if (enableSendConfirm)
-            socket.emit('confirmWall', generateConfirmApi(scanApi.key));
+        // if (enableSendConfirm)
+        //     socket.emit('confirmWall', generateConfirmApi(scanApi.key));
 
         if (testEnabled) {
             let wallName = returnWall();
@@ -160,25 +160,27 @@ io.on('connection', function (socket) {
             //     wallName = returnWall();
             // }
             const lightApi = {
-                name: 'lightOn',
+                name: 'mergeWall/lightOn',
                 clientId: "Server",
                 version: "1.0.0",
                 params: {
                     wall: wallName,
                     side: 'front'
                 },
-                date: Date(Date.now()),
+                date: new Date().toISOString(),
                 key: scanApi.key
             }
-            io.emit('lightOn', lightApi)
+            io.emit('mergeWall/lightOn', lightApi)
         }
     });
 
-    socket.on('pushToWall', function (buttonApi) {
+    socket.on('mergeWall/putToLight', function (buttonApi) {
         const wallName = buttonApi.params.wall;
         console.log('pushToWall', buttonApi);
-        if (enableSendConfirm)
-            socket.emit('confirmWall', generateConfirmApi(buttonApi.key));
+        buttonApi.name = 'mergeWall/confirmPutToLight';
+        socket.emit('mergeWall/confirmPutToLight', buttonApi);
+        // if (enableSendConfirm)
+        //     socket.emit('confirmWall', generateConfirmApi(buttonApi.key));
         const lightOffApi = {
             name: 'lightOff',
             clientId: "server",
@@ -197,7 +199,7 @@ io.on('connection', function (socket) {
 
         if (testEnabled && wall(wallName).count >= wall(wallName).max) {
             const lightApi = {
-                name: 'lightOn',
+                name: 'mergeWall/lightOn',
                 clientId: "server",
                 version: "0.0.1",
                 params: {
@@ -207,7 +209,7 @@ io.on('connection', function (socket) {
                 date: buttonApi.date,
                 key: buttonApi.key
             }
-            socket.emit('lightOn', lightApi);
+            socket.emit('mergeWall/lightOn', lightApi);
             wall(wallName).count == 0;
             wall(wallName).max = Math.floor(Math.random() * 3);
             wall(wallName).full = true;
@@ -215,8 +217,10 @@ io.on('connection', function (socket) {
         }
     });
 
-    socket.on('pickToLight', function (buttonApi) {
+    socket.on('mergeWall/pickToLight', function (buttonApi) {
         console.log('pickToLight', buttonApi);
+        buttonApi.name = 'mergeWall/confirmPickToLight';
+        socket.emit('mergeWall/confirmPickToLight', buttonApi);
         // if (enableSendConfirm)
         // socket.emit('confirmWall', generateConfirmApi(buttonApi.key));
     });
