@@ -57,41 +57,41 @@ let generateConfirmCmd = function (name, wall, row, col, state) {
 
 const returnWall = function () {
     const row = Math.floor(Math.random() * 30) + 1;
-    const wallName = 'M-1-' + row;
+    const wallName = 'M-3-' + row;
     if (wall(wallName).full) return returnWall();
     else return wallName;
 }
 
-let M1 = { name: 'M-1-1', count: 0, max: 2, full: false };
-let M2 = { name: 'M-1-2', count: 0, max: 3, full: false };
-let M4 = { name: 'M-1-3', count: 0, max: 2, full: false };
-let M5 = { name: 'M-1-4', count: 0, max: 3, full: false };
-let M6 = { name: 'M-1-5', count: 0, max: 2, full: false };
-let M7 = { name: 'M-1-6', count: 0, max: 3, full: false };
-let M8 = { name: 'M-1-7', count: 0, max: 2, full: false };
-let M9 = { name: 'M-1-8', count: 0, max: 3, full: false };
-let M10 = { name: 'M-1-9', count: 0, max: 2, full: false };
-let M11 = { name: 'M-1-10', count: 0, max: 3, full: false };
-let M12 = { name: 'M-1-11', count: 0, max: 2, full: false };
-let M13 = { name: 'M-1-12', count: 0, max: 3, full: false };
-let M14 = { name: 'M-1-13', count: 0, max: 2, full: false };
-let M15 = { name: 'M-1-14', count: 0, max: 3, full: false };
-let M16 = { name: 'M-1-15', count: 0, max: 2, full: false };
-let M17 = { name: 'M-1-16', count: 0, max: 3, full: false };
-let M18 = { name: 'M-1-17', count: 0, max: 2, full: false };
-let M19 = { name: 'M-1-18', count: 0, max: 3, full: false };
-let M20 = { name: 'M-1-19', count: 0, max: 2, full: false };
-let M21 = { name: 'M-1-20', count: 0, max: 3, full: false };
-let M22 = { name: 'M-1-21', count: 0, max: 2, full: false };
-let M23 = { name: 'M-1-22', count: 0, max: 3, full: false };
-let M24 = { name: 'M-1-23', count: 0, max: 2, full: false };
-let M25 = { name: 'M-1-24', count: 0, max: 3, full: false };
-let M26 = { name: 'M-1-25', count: 0, max: 2, full: false };
-let M27 = { name: 'M-1-26', count: 0, max: 3, full: false };
-let M28 = { name: 'M-1-27', count: 0, max: 2, full: false };
-let M29 = { name: 'M-1-28', count: 0, max: 3, full: false };
-let M30 = { name: 'M-1-29', count: 0, max: 2, full: false };
-let M31 = { name: 'M-1-30', count: 0, max: 3, full: false };
+let M1 = { name: 'M-3-1', count: 0, max: 2, full: false };
+let M2 = { name: 'M-3-2', count: 0, max: 3, full: false };
+let M4 = { name: 'M-3-3', count: 0, max: 2, full: false };
+let M5 = { name: 'M-3-4', count: 0, max: 3, full: false };
+let M6 = { name: 'M-3-5', count: 0, max: 2, full: false };
+let M7 = { name: 'M-3-6', count: 0, max: 3, full: false };
+let M8 = { name: 'M-3-7', count: 0, max: 2, full: false };
+let M9 = { name: 'M-3-8', count: 0, max: 3, full: false };
+let M10 = { name: 'M-3-9', count: 0, max: 2, full: false };
+let M11 = { name: 'M-3-10', count: 0, max: 3, full: false };
+let M12 = { name: 'M-3-11', count: 0, max: 2, full: false };
+let M13 = { name: 'M-3-12', count: 0, max: 3, full: false };
+let M14 = { name: 'M-3-13', count: 0, max: 2, full: false };
+let M15 = { name: 'M-3-14', count: 0, max: 3, full: false };
+let M16 = { name: 'M-3-15', count: 0, max: 2, full: false };
+let M17 = { name: 'M-3-16', count: 0, max: 3, full: false };
+let M18 = { name: 'M-3-17', count: 0, max: 2, full: false };
+let M19 = { name: 'M-3-18', count: 0, max: 3, full: false };
+let M20 = { name: 'M-3-19', count: 0, max: 2, full: false };
+let M21 = { name: 'M-3-20', count: 0, max: 3, full: false };
+let M22 = { name: 'M-3-21', count: 0, max: 2, full: false };
+let M23 = { name: 'M-3-22', count: 0, max: 3, full: false };
+let M24 = { name: 'M-3-23', count: 0, max: 2, full: false };
+let M25 = { name: 'M-3-24', count: 0, max: 3, full: false };
+let M26 = { name: 'M-3-25', count: 0, max: 2, full: false };
+let M27 = { name: 'M-3-26', count: 0, max: 3, full: false };
+let M28 = { name: 'M-3-27', count: 0, max: 2, full: false };
+let M29 = { name: 'M-3-28', count: 0, max: 3, full: false };
+let M30 = { name: 'M-3-29', count: 0, max: 2, full: false };
+let M31 = { name: 'M-3-30', count: 0, max: 3, full: false };
 
 const M = [M1, M2, M4, M5, M6, M7, M8, M9, M10, M11, M12, M13, M14, M15, M16, M17, M18, M19, M20, M21, M22, M23, M24, M25, M26, M27, M28, M29, M30, M31]
 
@@ -156,7 +156,7 @@ io.on('connection', function (socket) {
             while (wall(wallName).full == true) {
                 wallName = returnWall();
             }
-            // while(wallName == 'M-1-1' || wallName == 'M-1-7' || wallName =='M-1-13' || wallName == 'M-1-19' || wallName == 'M-1-25'){
+            // while(wallName == 'M-3-1' || wallName == 'M-3-7' || wallName =='M-3-13' || wallName == 'M-3-19' || wallName == 'M-3-25'){
             //     wallName = returnWall();
             // }
             const lightApi = {
