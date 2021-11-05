@@ -56,10 +56,17 @@ let generateConfirmCmd = function (name, wall, row, col, state) {
 };
 
 const returnWall = function (wallIndex) {
-    const row = Math.floor(Math.random() * 30) + 1;
-    const wallName = `M-${wallIndex}-${row}`;
-    if (wall(wallName).full) return returnWall(wallIndex);
-    else return wallName;
+    if (wallIndex == 4) {
+        const row = Math.floor(Math.random() * 15) + 1;
+        const wallName = `M-${wallIndex}-${row}`;
+        if (wall(wallName).full) return returnWall(wallIndex);
+        else return wallName;
+    } else {
+        const row = Math.floor(Math.random() * 30) + 1;
+        const wallName = `M-${wallIndex}-${row}`;
+        if (wall(wallName).full) return returnWall(wallIndex);
+        else return wallName;
+    }
 }
 
 let M_1_1 = { name: 'M-1-1', count: 0, max: 2, full: false };
