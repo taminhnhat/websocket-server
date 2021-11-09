@@ -310,7 +310,7 @@ io.on('connection', function (socket) {
                 date: new Date().toISOString(),
                 key: scanApi.key
             }
-            io.emit('mergeWall/lightOn', lightApi)
+            socket.emit('mergeWall/lightOn', lightApi)
         }
     });
 
