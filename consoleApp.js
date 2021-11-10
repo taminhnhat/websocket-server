@@ -290,8 +290,10 @@ io.on('connection', function (socket) {
         console.log('scanTotePushToWall', scanApi);
         // if (enableSendConfirm)
         //     socket.emit('confirmWall', generateConfirmApi(scanApi.key));
-
-        if (testEnabled) {
+        if (scanApi.params.tote == 'M-6022') {
+            socket.emit('mergeWall/error', { err: 'NOT_TO_THIS_WALL' });
+        }
+        else if (testEnabled) {
             let wallName = returnWall(scanApi.params.wallIndex);
             while (wall(wallName).full == true) {
                 wallName = returnWall(scanApi.params.wallIndex);
