@@ -302,7 +302,7 @@ io.on('connection', function (socket) {
             loadingMode = 'putToLight';
             console.log('Switch to put to light mode');
         }
-        else if (header = 'pick') {
+        else if (header == 'pick') {
             loadingMode = 'pickToLight';
             console.log('Switch to pick to light mode');
         }
