@@ -1,2 +1,4 @@
 node_modules/
+pipe/
 ./test
+.env

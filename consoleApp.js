@@ -1,12 +1,23 @@
 
 const wallMess = require('./Message/wallMessage');
 const io = require('socket.io')();
+const event = require('./event');
+require('dotenv').config({ path: './.env' });
+require('./readPipe');
+require('./scanner');
+const RGB = require('./rgb');
 const version = '0.0.1';
 
 const testEnabled = true;
+const upperCaseRGBFormat = process.env.UPPERCASE_COLORRGB_FORMAT;
 
 let listenSocket = null;
 let enableSendConfirm = true;
+
+function rgbFormat(color) {
+    if (upperCaseRGBFormat) return color.toUpperCase();
+    else return color.toLowerCase();
+}
 
 /**
  * 
@@ -244,6 +255,166 @@ const wall = function (wallName) {
 console.log('Start listening')
 io.listen(3000);
 io.on('connection', function (socket) {
+    // setInterval(() => {
+    //     const wallName = 'M-1-1';
+    //     const key = generateCheck(5);
+    //     const lightApi = {
+    //         name: 'mergeWall/lightOn',
+    //         clientId: "Server",
+    //         version: "1.0.0",
+    //         params: {
+    //             wall: wallName,
+    //             lightColor: rgbFormat(RGB.rand()),
+    //             side: 'front'
+    //         },
+    //         date: new Date().toISOString(),
+    //         key: key
+    //     }
+    //     socket.emit('mergeWall/lightOn', lightApi);
+    //     setTimeout(() => {
+    //         const lightApi = {
+    //             name: 'mergeWall/lightOff',
+    //             clientId: "Server",
+    //             version: "1.0.0",
+    //             params: {
+    //                 wall: wallName,
+    //                 lightColor: rgbFormat('000000'),
+    //                 side: 'front'
+    //             },
+    //             date: new Date().toISOString(),
+    //             key: key
+    //         }
+    //         socket.emit('mergeWall/lightOff', lightApi)
+    //     })
+    // }, 5000)
+
+    let userIndex = 0;
+    let loadingMode = 'putTolight';
+    event.on('user:turnLight', (data) => {
+        console.log(data);
+        const dataArray = data.split(':');
+        const header = dataArray[0];
+        if (header == 'user') {
+            userIndex = dataArray[1];
+            console.log(`Switch to user ${dataArray[1]}`);
+        }
+        else if (header == 'put') {
+            loadingMode = 'putToLight';
+            console.log('Switch to put to light mode');
+        }
+        else if (header = 'pick') {
+            loadingMode = 'pickToLight';
+            console.log('Switch to pick to light mode');
+        }
+        else {
+            const apiName = `mergeWall/${dataArray[0]}`;
+            const wallName = dataArray[1];
+            const lightColor = dataArray[2];
+            const wallSide = dataArray[3];
+            const key = generateCheck(5);
+            const lightApi = {
+                name: apiName,
+                clientId: "Server",
+                version: "1.0.0",
+                params: {
+                    wall: wallName,
+                    lightColor: lightColor,
+                    side: wallSide
+                },
+                date: new Date().toISOString(),
+                key: key
+            }
+            socket.emit(apiName, lightApi);
+        }
+    });
+
+    storageBin = [{
+        name: 'M-1-5',
+        color: 'ff0000',
+        tote: 0
+    }, {
+        name: 'M-1-10',
+        color: '00ff00',
+        tote: 0
+    }, {
+        name: 'M-1-15',
+        color: '0000ff',
+        tote: 0
+    }, {
+        name: 'M-1-20',
+        color: 'ff00ff',
+        tote: 0
+    }, {
+        name: 'M-1-25',
+        color: 'ffff00',
+        tote: 0
+    }, {
+        name: 'M-1-30',
+        color: '00ffff',
+        tote: 0
+    }];
+    event.on('scanner', params => {
+        const scanValue = params.value.split('-');
+        if (scanValue.length == 2) {
+            const randValue = Math.floor(Math.random() * 6) + 1;
+            const wallName = `M-1-${randValue * 5}`;
+            const lightColor = storageBin[userIndex].color;
+            let wallSide = 'front';
+            if (loadingMode == 'putToLight') wallSide = 'front';
+            else if (loadingMode == 'pickToLight') wallSide = 'back';
+            const lightApi = {
+                name: 'mergeWall/LightOn',
+                clientId: "Server",
+                version: "1.0.0",
+                params: {
+                    wall: wallName,
+                    lightColor: lightColor,
+                    side: wallSide
+                },
+                date: new Date().toISOString(),
+                key: key
+            }
+            socket.emit('mergeWall/lightOn', lightApi);
+        }
+        else if (scanValue.length == 3) {
+            const lightApi = {
+                name: 'mergeWall/LightOff',
+                clientId: "Server",
+                version: "1.0.0",
+                params: {
+                    wall: params.value,
+                    lightColor: lightColor,
+                    side: wallSide
+                },
+                date: new Date().toISOString(),
+                key: key
+            }
+            socket.emit('mergeWall/LightOff', lightApi);
+            for (let idx = 0; idx < 6; idx++) {
+                if (storageBin[idx].name == 'params.value') {
+                    storageBin[idx].tote++;
+                    if (storageBin[idx].tote >= 2) {
+                        const lightApi = {
+                            name: 'mergeWall/LightOn',
+                            clientId: "Server",
+                            version: "1.0.0",
+                            params: {
+                                wall: params.value,
+                                lightColor: 'ffffff',
+                                side: 'back'
+                            },
+                            date: new Date().toISOString(),
+                            key: key
+                        }
+                        socket.emit('mergeWall/lightOn', lightApi);
+                        storageBin[idx].tote = 0;
+                    }
+                }
+            }
+        }
+    })
+
+
     console.log('New client connected', socket.conn.remoteAddress);
     listenSocket = socket;
     //      HANDLE EVENT FROM USER
@@ -301,12 +472,14 @@ io.on('connection', function (socket) {
             // while(wallName == 'M-3-1' || wallName == 'M-3-7' || wallName =='M-3-13' || wallName == 'M-3-19' || wallName == 'M-3-25'){
             //     wallName = returnWall();
             // }
+
             const lightApi = {
                 name: 'mergeWall/lightOn',
                 clientId: "Server",
                 version: "1.0.0",
                 params: {
                     wall: wallName,
+                    lightColor: rgbFormat(RGB.rand()),
                     side: 'front'
                 },
                 date: new Date().toISOString(),
@@ -346,6 +519,7 @@ io.on('connection', function (socket) {
                 version: "0.0.1",
                 params: {
                     wall: wallName,
+                    lightColor: 'ff0000',
                     side: 'back'
                 },
                 date: buttonApi.date,
