@@ -31,8 +31,8 @@ function rgbFormat(color) {
 let generateLightCmd = function (name, type, side) {
     let lightObj = {
         name: '',
-        clientId: "server",
-        version: "0.0.1",
+        clientId: 'demo_server',
+        version: '0.0.1',
         params: {}
     };
     lightObj.name = name;
@@ -41,8 +41,8 @@ let generateLightCmd = function (name, type, side) {
     lightObj.key = generateCheck(5);
     return {
         name: '',
-        clientId: "server",
-        version: "0.0.1",
+        clientId: 'demo_server',
+        version: '0.0.1',
         params: {
             wall: type,
             side: side
@@ -52,10 +52,10 @@ let generateLightCmd = function (name, type, side) {
 
 let generateConfirmCmd = function (name, wall, row, col, state) {
     let confirmObj = {
-        "name": '',
-        "clientId": "server",
-        "version": "0.0.1",
-        "params": {}
+        'name': '',
+        'clientId': 'demo_server',
+        'version': '0.0.1',
+        'params': {}
 
     };
     confirmObj.name = name, name;
@@ -80,69 +80,69 @@ const returnWall = function (wallIndex) {
     }
 }
 
-let M_1_1 = { name: 'M-1-1', count: 0, max: 2, full: false };
-let M_1_2 = { name: 'M-1-2', count: 0, max: 3, full: false };
-let M_1_4 = { name: 'M-1-3', count: 0, max: 2, full: false };
-let M_1_5 = { name: 'M-1-4', count: 0, max: 3, full: false };
-let M_1_6 = { name: 'M-1-5', count: 0, max: 2, full: false };
-let M_1_7 = { name: 'M-1-6', count: 0, max: 3, full: false };
-let M_1_8 = { name: 'M-1-7', count: 0, max: 2, full: false };
-let M_1_9 = { name: 'M-1-8', count: 0, max: 3, full: false };
-let M_1_10 = { name: 'M-1-9', count: 0, max: 2, full: false };
-let M_1_11 = { name: 'M-1-10', count: 0, max: 3, full: false };
-let M_1_12 = { name: 'M-1-11', count: 0, max: 2, full: false };
-let M_1_13 = { name: 'M-1-12', count: 0, max: 3, full: false };
-let M_1_14 = { name: 'M-1-13', count: 0, max: 2, full: false };
-let M_1_15 = { name: 'M-1-14', count: 0, max: 3, full: false };
-let M_1_16 = { name: 'M-1-15', count: 0, max: 2, full: false };
-let M_1_17 = { name: 'M-1-16', count: 0, max: 3, full: false };
-let M_1_18 = { name: 'M-1-17', count: 0, max: 2, full: false };
-let M_1_19 = { name: 'M-1-18', count: 0, max: 3, full: false };
-let M_1_20 = { name: 'M-1-19', count: 0, max: 2, full: false };
-let M_1_21 = { name: 'M-1-20', count: 0, max: 3, full: false };
-let M_1_22 = { name: 'M-1-21', count: 0, max: 2, full: false };
-let M_1_23 = { name: 'M-1-22', count: 0, max: 3, full: false };
-let M_1_24 = { name: 'M-1-23', count: 0, max: 2, full: false };
-let M_1_25 = { name: 'M-1-24', count: 0, max: 3, full: false };
-let M_1_26 = { name: 'M-1-25', count: 0, max: 2, full: false };
-let M_1_27 = { name: 'M-1-26', count: 0, max: 3, full: false };
-let M_1_28 = { name: 'M-1-27', count: 0, max: 2, full: false };
-let M_1_29 = { name: 'M-1-28', count: 0, max: 3, full: false };
-let M_1_30 = { name: 'M-1-29', count: 0, max: 2, full: false };
-let M_1_31 = { name: 'M-1-30', count: 0, max: 3, full: false };
+let M_1_1 = { name: 'M-1-1', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_2 = { name: 'M-1-2', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_3 = { name: 'M-1-3', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_4 = { name: 'M-1-4', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_5 = { name: 'M-1-5', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_6 = { name: 'M-1-6', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_7 = { name: 'M-1-7', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_8 = { name: 'M-1-8', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_9 = { name: 'M-1-9', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_10 = { name: 'M-1-10', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_11 = { name: 'M-1-11', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_12 = { name: 'M-1-12', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_13 = { name: 'M-1-13', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_14 = { name: 'M-1-14', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_15 = { name: 'M-1-15', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_16 = { name: 'M-1-16', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_17 = { name: 'M-1-17', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_18 = { name: 'M-1-18', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_19 = { name: 'M-1-19', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_20 = { name: 'M-1-20', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_21 = { name: 'M-1-21', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_22 = { name: 'M-1-22', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_23 = { name: 'M-1-23', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_24 = { name: 'M-1-24', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_25 = { name: 'M-1-25', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_26 = { name: 'M-1-26', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_27 = { name: 'M-1-27', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_28 = { name: 'M-1-28', count: 0, max: 1, full: false, loadingMode: 'put' };
+let M_1_29 = { name: 'M-1-29', count: 0, max: 2, full: false, loadingMode: 'put' };
+let M_1_30 = { name: 'M-1-30', count: 0, max: 1, full: false, loadingMode: 'put' };
 
-const M1 = [M_1_1, M_1_2, M_1_4, M_1_5, M_1_6, M_1_7, M_1_8, M_1_9, M_1_10, M_1_11, M_1_12, M_1_13, M_1_14, M_1_15, M_1_16, M_1_17, M_1_18, M_1_19, M_1_20, M_1_21, M_1_22, M_1_23, M_1_24, M_1_25, M_1_26, M_1_27, M_1_28, M_1_29, M_1_30, M_1_31];
+const M1 = [M_1_1, M_1_2, M_1_3, M_1_4, M_1_5, M_1_6, M_1_7, M_1_8, M_1_9, M_1_10, M_1_11, M_1_12, M_1_13, M_1_14, M_1_15, M_1_16, M_1_17, M_1_18, M_1_19, M_1_20, M_1_21, M_1_22, M_1_23, M_1_24, M_1_25, M_1_26, M_1_27, M_1_28, M_1_29, M_1_30];
 
 let M_2_1 = { name: 'M-2-1', count: 0, max: 2, full: false };
-let M_2_2 = { name: 'M-2-2', count: 0, max: 3, full: false };
+let M_2_2 = { name: 'M-2-2', count: 0, max: 1, full: false };
 let M_2_4 = { name: 'M-2-3', count: 0, max: 2, full: false };
-let M_2_5 = { name: 'M-2-4', count: 0, max: 3, full: false };
+let M_2_5 = { name: 'M-2-4', count: 0, max: 1, full: false };
 let M_2_6 = { name: 'M-2-5', count: 0, max: 2, full: false };
-let M_2_7 = { name: 'M-2-6', count: 0, max: 3, full: false };
+let M_2_7 = { name: 'M-2-6', count: 0, max: 1, full: false };
 let M_2_8 = { name: 'M-2-7', count: 0, max: 2, full: false };
-let M_2_9 = { name: 'M-2-8', count: 0, max: 3, full: false };
+let M_2_9 = { name: 'M-2-8', count: 0, max: 1, full: false };
 let M_2_10 = { name: 'M-2-9', count: 0, max: 2, full: false };
-let M_2_11 = { name: 'M-2-10', count: 0, max: 3, full: false };
+let M_2_11 = { name: 'M-2-10', count: 0, max: 1, full: false };
 let M_2_12 = { name: 'M-2-11', count: 0, max: 2, full: false };
-let M_2_13 = { name: 'M-2-12', count: 0, max: 3, full: false };
-let M_2_14 = { name: 'M-2-13', count: 0, max: 2, full: false };
-let M_2_15 = { name: 'M-2-14', count: 0, max: 3, full: false };
+let M_2_13 = { name: 'M-2-12', count: 0, max: 1, full: false };
+let M_2_14 = { name: 'M-2-13', count: 0, max: 1, full: false };
+let M_2_15 = { name: 'M-2-14', count: 0, max: 1, full: false };
 let M_2_16 = { name: 'M-2-15', count: 0, max: 2, full: false };
-let M_2_17 = { name: 'M-2-16', count: 0, max: 3, full: false };
+let M_2_17 = { name: 'M-2-16', count: 0, max: 1, full: false };
 let M_2_18 = { name: 'M-2-17', count: 0, max: 2, full: false };
-let M_2_19 = { name: 'M-2-18', count: 0, max: 3, full: false };
+let M_2_19 = { name: 'M-2-18', count: 0, max: 1, full: false };
 let M_2_20 = { name: 'M-2-19', count: 0, max: 2, full: false };
-let M_2_21 = { name: 'M-2-20', count: 0, max: 3, full: false };
+let M_2_21 = { name: 'M-2-20', count: 0, max: 1, full: false };
 let M_2_22 = { name: 'M-2-21', count: 0, max: 2, full: false };
-let M_2_23 = { name: 'M-2-22', count: 0, max: 3, full: false };
+let M_2_23 = { name: 'M-2-22', count: 0, max: 1, full: false };
 let M_2_24 = { name: 'M-2-23', count: 0, max: 2, full: false };
-let M_2_25 = { name: 'M-2-24', count: 0, max: 3, full: false };
+let M_2_25 = { name: 'M-2-24', count: 0, max: 1, full: false };
 let M_2_26 = { name: 'M-2-25', count: 0, max: 2, full: false };
-let M_2_27 = { name: 'M-2-26', count: 0, max: 3, full: false };
-let M_2_28 = { name: 'M-2-27', count: 0, max: 2, full: false };
-let M_2_29 = { name: 'M-2-28', count: 0, max: 3, full: false };
+let M_2_27 = { name: 'M-2-26', count: 0, max: 1, full: false };
+let M_2_28 = { name: 'M-2-27', count: 0, max: 1, full: false };
+let M_2_29 = { name: 'M-2-28', count: 0, max: 1, full: false };
 let M_2_30 = { name: 'M-2-29', count: 0, max: 2, full: false };
-let M_2_31 = { name: 'M-2-30', count: 0, max: 3, full: false };
+let M_2_31 = { name: 'M-2-30', count: 0, max: 1, full: false };
 
 const M2 = [M_2_1, M_2_2, M_2_4, M_2_5, M_2_6, M_2_7, M_2_8, M_2_9, M_2_10, M_2_11, M_2_12, M_2_13, M_2_14, M_2_15, M_2_16, M_2_17, M_2_18, M_2_19, M_2_20, M_2_21, M_2_22, M_2_23, M_2_24, M_2_25, M_2_26, M_2_27, M_2_28, M_2_29, M_2_30, M_2_31];
 
@@ -252,7 +252,7 @@ const wall = function (wallName) {
     } else return 'error';
 }
 
-console.log('Start listening')
+console.log('Start listening');
 io.listen(3000);
 io.on('connection', function (socket) {
     // setInterval(() => {
@@ -260,8 +260,8 @@ io.on('connection', function (socket) {
     //     const key = generateCheck(5);
     //     const lightApi = {
     //         name: 'mergeWall/lightOn',
-    //         clientId: "Server",
-    //         version: "1.0.0",
+    //         clientId: 'demo_server',
+    //         version: '1.0.0',
     //         params: {
     //             wall: wallName,
     //             lightColor: rgbFormat(RGB.rand()),
@@ -274,8 +274,8 @@ io.on('connection', function (socket) {
     //     setTimeout(() => {
     //         const lightApi = {
     //             name: 'mergeWall/lightOff',
-    //             clientId: "Server",
-    //             version: "1.0.0",
+    //             clientId: 'demo_server',
+    //             version: '1.0.0',
     //             params: {
     //                 wall: wallName,
     //                 lightColor: rgbFormat('000000'),
@@ -291,12 +291,14 @@ io.on('connection', function (socket) {
     let userIndex = 0;
     let loadingMode = 'putTolight';
     event.on('user:turnLight', (data) => {
-        console.log(data);
         const dataArray = data.split(':');
         const header = dataArray[0];
-        if (header == 'user') {
-            userIndex = dataArray[1];
-            console.log(`Switch to user ${dataArray[1]}`);
+        if (header == 'user' && dataArray.length >= 2) {
+            const tempIdex = Number(dataArray[1]);
+            if (tempIdex >= 0 && tempIdex < 6) {
+                userIndex = dataArray[1];
+                console.log(`Switch to user ${dataArray[1]}`);
+            }
         }
         else if (header == 'put') {
             loadingMode = 'putToLight';
@@ -306,6 +308,37 @@ io.on('connection', function (socket) {
             loadingMode = 'pickToLight';
             console.log('Switch to pick to light mode');
         }
+        else if (header == 'scan' && dataArray.length >= 2) {
+            event.emit('scanner', {
+                value: dataArray[1]
+            });
+        }
+        else if (header == 'clear') {
+            const apiName = 'mergeWall/reset';
+            const wallList = [];
+            const resetApi = {
+                name: apiName,
+                clientId: 'demo_server',
+                version: '1.0.0',
+                params: {
+                    wallList: wallList,
+                },
+                date: new Date().toISOString(),
+                key: generateCheck(5)
+            }
+            socket.emit(apiName, resetApi);
+        }
+        else if (header == 'reload') {
+            const apiName = 'mergeWall/reload';
+            const reloadApi = {
+                name: apiName,
+                clientId: 'demo_server',
+                version: '1.0.0',
+                date: new Date().toISOString(),
+                key: generateCheck(5)
+            }
+            socket.emit(apiName, reloadApi);
+        }
         else {
             const apiName = `mergeWall/${dataArray[0]}`;
             const wallName = dataArray[1];
@@ -314,8 +347,8 @@ io.on('connection', function (socket) {
             const key = generateCheck(5);
             const lightApi = {
                 name: apiName,
-                clientId: "Server",
-                version: "1.0.0",
+                clientId: 'demo_server',
+                version: '1.0.0',
                 params: {
                     wall: wallName,
                     lightColor: lightColor,
@@ -328,90 +361,109 @@ io.on('connection', function (socket) {
         }
     });
 
-    storageBin = [{
-        name: 'M-1-5',
-        color: 'ff0000',
-        tote: 0
+    appUser = [{
+        color: '00ff00'//green
     }, {
-        name: 'M-1-10',
-        color: '00ff00',
-        tote: 0
+        color: '0000ff'//blue
     }, {
-        name: 'M-1-15',
-        color: '0000ff',
-        tote: 0
+        color: 'ffff00'//yelow
     }, {
-        name: 'M-1-20',
-        color: 'ff00ff',
-        tote: 0
+        color: 'ff00ff'//pink
     }, {
-        name: 'M-1-25',
-        color: 'ffff00',
-        tote: 0
+        color: 'ff8000'//orange
     }, {
-        name: 'M-1-30',
-        color: '00ffff',
-        tote: 0
+        color: '00ffff'//
     }];
     event.on('scanner', params => {
+        console.log('scanner event', params);
         const scanValue = params.value.split('-');
         if (scanValue.length == 2) {
-            const randValue = Math.floor(Math.random() * 6) + 1;
-            const wallName = `M-1-${randValue * 5}`;
-            const lightColor = storageBin[userIndex].color;
+            const randValue = Math.floor(Math.random() * 30) + 1;
+            // const randValue = Math.floor(Math.random() * 6) * 5 + 4;
+            const wallName = `M-1-${randValue}`;
+
+            for (let idx = 0; idx < 30; idx++) {
+                if (M1[idx].name == wallName) {
+                    if (M1[idx].full) {
+                        console.log(`Wall ${wallName} is full`);
+                    }
+                    else {
+                        // userIndex = params.userIndex || 0;
+                        userIndex = Math.floor(Math.random() * 6);
+                        const lightColor = appUser[userIndex].color;
+                        let wallSide = 'front';
+                        if (loadingMode == 'putToLight') wallSide = 'front';
+                        else if (loadingMode == 'pickToLight') wallSide = 'back';
+                        const lightApi = {
+                            name: 'mergeWall/lightOn',
+                            clientId: 'demo_server',
+                            version: '1.0.0',
+                            params: {
+                                wall: wallName,
+                                lightColor: lightColor,
+                                side: wallSide
+                            },
+                            date: new Date().toISOString(),
+                            key: generateCheck(5)
+                        }
+                        socket.emit('mergeWall/lightOn', lightApi);
+                        console.log('socket emit', lightApi);
+                    }
+                }
+            }
+        }
+        else if (scanValue.length == 3) {
             let wallSide = 'front';
             if (loadingMode == 'putToLight') wallSide = 'front';
             else if (loadingMode == 'pickToLight') wallSide = 'back';
             const lightApi = {
-                name: 'mergeWall/LightOn',
-                clientId: "Server",
-                version: "1.0.0",
-                params: {
-                    wall: wallName,
-                    lightColor: lightColor,
-                    side: wallSide
-                },
-                date: new Date().toISOString(),
-                key: key
-            }
-            socket.emit('mergeWall/lightOn', lightApi);
-        }
-        else if (scanValue.length == 3) {
-            const lightApi = {
-                name: 'mergeWall/LightOff',
-                clientId: "Server",
-                version: "1.0.0",
+                name: 'mergeWall/lightOff',
+                clientId: 'demo_server',
+                version: '1.0.0',
                 params: {
                     wall: params.value,
-                    lightColor: lightColor,
+                    lightColor: '000000',
                     side: wallSide
                 },
                 date: new Date().toISOString(),
-                key: key
+                key: generateCheck(5)
             }
-            socket.emit('mergeWall/LightOff', lightApi);
-            for (let idx = 0; idx < 6; idx++) {
-                if (storageBin[idx].name == 'params.value') {
-                    storageBin[idx].tote++;
-                    if (storageBin[idx].tote >= 2) {
+            socket.emit('mergeWall/lightOff', lightApi);
+            console.log('socket emit', lightApi);
+
+            for (let idx = 0; idx < 30; idx++) {
+                if (M1[idx].name == params.value) {
+                    if (M1[idx].loadingMode == 'put') {
+                        M1[idx].count++;
+                    } else if (M1[idx].loadingMode == 'pick') {
+                        M1[idx].loadingMode = 'put';
+                    } else { }
+                    console.log(`Wall ${M1[idx].name} has ${M1[idx].count} totes`);
+                    M1[idx].full = false;
+                    if (M1[idx].count >= M1[idx].max) {
                         const lightApi = {
-                            name: 'mergeWall/LightOn',
-                            clientId: "Server",
-                            version: "1.0.0",
+                            name: 'mergeWall/lightOn',
+                            clientId: 'demo_server',
+                            version: '1.0.0',
                             params: {
                                 wall: params.value,
                                 lightColor: 'ffffff',
                                 side: 'back'
                             },
                             date: new Date().toISOString(),
-                            key: key
+                            key: generateCheck(5)
                         }
-                        socket.emit('mergeWall/lightOn', lightApi);
-                        storageBin[idx].tote = 0;
+                        setTimeout(() => {
+                            socket.emit('mergeWall/lightOn', lightApi);
+                        }, 1000);
+                        M1[idx].count = 0;
+                        M1[idx].full = true;
+                        M1[idx].loadingMode = 'pick';
                     }
                 }
             }
         }
+
     })
 
 
@@ -435,8 +487,8 @@ io.on('connection', function (socket) {
         if (tempStr[1] == 'M' && tempStr[2] >= 1 && tempStr[2] <= 4 && tempStr[3] >= 1 && tempStr[3] <= 30) {
             let lightApi = {
                 name: tempName,
-                clientId: "server",
-                version: "0.0.1",
+                clientId: 'demo_server',
+                version: '0.0.1',
                 params: {
                     wall: tempWall,
                     side: tempSide
@@ -475,8 +527,8 @@ io.on('connection', function (socket) {
 
             const lightApi = {
                 name: 'mergeWall/lightOn',
-                clientId: "Server",
-                version: "1.0.0",
+                clientId: 'demo_server',
+                version: '1.0.0',
                 params: {
                     wall: wallName,
                     lightColor: rgbFormat(RGB.rand()),
@@ -498,8 +550,8 @@ io.on('connection', function (socket) {
         //     socket.emit('confirmWall', generateConfirmApi(buttonApi.key));
         const lightOffApi = {
             name: 'lightOff',
-            clientId: "server",
-            version: "0.0.1",
+            clientId: 'demo_server',
+            version: '0.0.1',
             params: {
                 wall: wallName,
                 side: 'front'
@@ -515,8 +567,8 @@ io.on('connection', function (socket) {
         if (testEnabled && wall(wallName).count >= wall(wallName).max) {
             const lightApi = {
                 name: 'mergeWall/lightOn',
-                clientId: "server",
-                version: "0.0.1",
+                clientId: 'demo_server',
+                version: '0.0.1',
                 params: {
                     wall: wallName,
                     lightColor: 'ff0000',
@@ -566,7 +618,7 @@ io.on('connection', function (socket) {
         delete d.params;
         d.name = 'confirm';
         d.clientId = 'server';
-        socket.emit("pressButtonFromWallConfirm", d);
+        socket.emit('pressButtonFromWallConfirm', d);
     });
     //  Handle scaner from wall
     socket.on('scanner:container', function (d) {
@@ -602,10 +654,10 @@ io.on('connection', function (socket) {
 
 
 
-    socket.on("putPackageFromWall", function (d) {
+    socket.on('putPackageFromWall', function (d) {
         console.log(d);
     });
-    socket.on("getPackageFromWall", function (d) {
+    socket.on('getPackageFromWall', function (d) {
         console.log(d);
     });
     //  Handle error from wall
