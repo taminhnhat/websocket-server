@@ -378,7 +378,8 @@ io.on('connection', function (socket) {
         console.log('scanner event', params);
         const scanValue = params.value.split('-');
         if (scanValue.length == 2) {
-            const randValue = Math.floor(Math.random() * 30) + 1;
+            // const randValue = Math.floor(Math.random() * 30) + 1;
+            const randValue = Math.floor(Math.random() * 5 + 1) * 5;
             // const randValue = Math.floor(Math.random() * 6) * 5 + 4;
             const wallName = `M-1-${randValue}`;
 
@@ -422,7 +423,7 @@ io.on('connection', function (socket) {
                 version: '1.0.0',
                 params: {
                     wall: params.value,
-                    lightColor: '000000',
+                    lightColor: appUser[userIndex].color,
                     side: wallSide
                 },
                 date: new Date().toISOString(),
