@@ -300,13 +300,53 @@ io.on('connection', function (socket) {
                 console.log(`Switch to user ${dataArray[1]}`);
             }
         }
+        else if (header == 'on') {
+            const lightApi = {
+                name: 'mergeWall/lightOn',
+                clientId: 'demo_server',
+                version: '1.0.0',
+                params: {
+                    wall: dataArray[1],
+                    lightColor: dataArray[2],
+                    side: 'front'
+                },
+                date: new Date().toISOString(),
+                key: generateCheck(5)
+            }
+            socket.emit('mergeWall/lightOn', lightApi);
+            console.log('socket emit', lightApi);
+        }
+        else if (header == 'off') {
+            const lightApi = {
+                name: 'mergeWall/lightOff',
+                clientId: 'demo_server',
+                version: '1.0.0',
+                params: {
+                    wall: dataArray[1],
+                    lightColor: dataArray[2],
+                    side: 'front'
+                },
+                date: new Date().toISOString(),
+                key: generateCheck(5)
+            }
+            socket.emit('mergeWall/lightOff', lightApi);
+            console.log('socket emit', lightApi);
+        }
         else if (header == 'put') {
             loadingMode = 'putToLight';
             console.log('Switch to put to light mode');
+            event.emit('putToLight', {
+                tote: dataArray[1],
+                wall: dataArray[2]
+            });
         }
         else if (header == 'pick') {
             loadingMode = 'pickToLight';
             console.log('Switch to pick to light mode');
+            event.emit('pickToLight', {
+                tote: dataArray[1],
+                wall: dataArray[2]
+            });
         }
         else if (header == 'scan' && dataArray.length >= 2) {
             event.emit('scanner', {
@@ -465,7 +505,7 @@ io.on('connection', function (socket) {
             }
         }
 
-    })
+    });
 
 
     console.log('New client connected', socket.conn.remoteAddress);
