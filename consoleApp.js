@@ -4,7 +4,8 @@ const io = require('socket.io')();
 const event = require('./event');
 require('dotenv').config({ path: './.env' });
 require('./readPipe');
-require('./scanner');
+if (process.env.SCANNER_ENABLED == 'true')
+    require('./scanner');
 const RGB = require('./rgb');
 const version = '0.0.1';
 
