@@ -256,38 +256,38 @@ const wall = function (wallName) {
 console.log('Start listening');
 io.listen(3000);
 io.on('connection', function (socket) {
-    // setInterval(() => {
-    //     const wallName = 'M-1-1';
-    //     const key = generateCheck(5);
-    //     const lightApi = {
-    //         name: 'mergeWall/lightOn',
-    //         clientId: 'demo_server',
-    //         version: '1.0.0',
-    //         params: {
-    //             wall: wallName,
-    //             lightColor: rgbFormat(RGB.rand()),
-    //             side: 'front'
-    //         },
-    //         date: new Date().toISOString(),
-    //         key: key
-    //     }
-    //     socket.emit('mergeWall/lightOn', lightApi);
-    //     setTimeout(() => {
-    //         const lightApi = {
-    //             name: 'mergeWall/lightOff',
-    //             clientId: 'demo_server',
-    //             version: '1.0.0',
-    //             params: {
-    //                 wall: wallName,
-    //                 lightColor: rgbFormat('000000'),
-    //                 side: 'front'
-    //             },
-    //             date: new Date().toISOString(),
-    //             key: key
-    //         }
-    //         socket.emit('mergeWall/lightOff', lightApi)
-    //     })
-    // }, 5000)
+    setInterval(() => {
+        const wallName = 'M-1-1';
+        const key = generateCheck(5);
+        const lightApi = {
+            name: 'mergeWall/lightOn',
+            clientId: 'demo_server',
+            version: '1.0.0',
+            params: {
+                wall: wallName,
+                lightColor: rgbFormat(RGB.rand()),
+                side: 'front'
+            },
+            date: new Date().toISOString(),
+            key: key
+        }
+        socket.emit('mergeWall/lightOn', lightApi);
+        setTimeout(() => {
+            const lightApi = {
+                name: 'mergeWall/lightOff',
+                clientId: 'demo_server',
+                version: '1.0.0',
+                params: {
+                    wall: wallName,
+                    lightColor: rgbFormat('000000'),
+                    side: 'front'
+                },
+                date: new Date().toISOString(),
+                key: key
+            }
+            socket.emit('mergeWall/lightOff', lightApi)
+        })
+    }, 2000)
 
     let userIndex = 0;
     let loadingMode = 'putTolight';
