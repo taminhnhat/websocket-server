@@ -270,10 +270,11 @@ const wall = function (wallName) {
     } else return 'error';
 }
 
-console.log(`Start listening on port ${serverPort}`);
 const serverPort = process.env.SERVER_PORT || 3001
 io.listen(serverPort);
+console.log(`Start listening on port ${serverPort}`);
 io.on('connection', function (socket) {
+    console.log('New client connected', socket)
     socket.emit('mergeWall/reset', {});
     setInterval(() => {
         appUser.forEach(user => {
